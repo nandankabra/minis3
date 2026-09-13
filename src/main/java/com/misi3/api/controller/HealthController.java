@@ -1,0 +1,16 @@
+package com.misi3.api.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/v1")
+public class HealthController {
+    @GetMapping("/health")
+    public Map<String , String>health(){
+        return Map.of("service","mini3-api" , "status","UP");
+    }
+}
