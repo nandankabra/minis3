@@ -11,7 +11,7 @@ public class Bucket {
     }
 
     public String getName() {
-        return name;
+        return null;
     }
 
     public void setName(String name) {

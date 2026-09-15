@@ -1,6 +1,5 @@
 package com.misi3.api.object;
 
-import com.misi3.api.bucket.Bucket;
 import com.misi3.api.bucket.BucketRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
