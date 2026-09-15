@@ -10,6 +10,7 @@ public class BucketService {
     public BucketService(BucketRepository bucketRepository  ){
         this.bucketRepository=bucketRepository;
     }
+    /*
     public Bucket createBucket(String name){
         if(name == null || name.isBlank()){
             throw  new IllegalArgumentException("Bucket name cnnot be empty");
@@ -19,5 +20,22 @@ public class BucketService {
         }
         Bucket bucket = new Bucket(name);
         return bucketRepository.save(bucket);
+    }*/
+    //temp code
+    public Bucket createBucket(String name){
+
+        System.out.println("BucketService Repo = " + bucketRepository.hashCode());
+
+        if(name == null || name.isBlank()){
+            throw new IllegalArgumentException("Bucket name cannot be empty");
+        }
+
+        if(bucketRepository.exists(name)){
+            throw new IllegalArgumentException("Bucket already exists");
+        }
+
+        Bucket bucket = new Bucket(name);
+        return bucketRepository.save(bucket);
     }
+    //temp code end here
 }
