@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/buckets/{bucketName}/objects")
@@ -79,6 +80,15 @@ public class ObjectController {
 
         return ResponseEntity.ok(
                 "Object deleted successfully"
+        );
+    }
+    @GetMapping
+    public ResponseEntity<List<String>> listObjects(
+            @PathVariable String bucketName
+    ) throws IOException {
+
+        return ResponseEntity.ok(
+                objectService.listObjects(bucketName)
         );
     }
 }

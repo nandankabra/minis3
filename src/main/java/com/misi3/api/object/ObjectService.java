@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 @Service
 public class ObjectService {
@@ -50,5 +51,15 @@ public class ObjectService {
     public void delete(String bucketName , String objectKey)throws IOException{
         localStorageService.delete(bucketName,objectKey );
     }
+    public List<String> listObjects(String bucketName)
+            throws IOException {
 
+        if (!bucketRepository.exists(bucketName)) {
+            throw new IllegalArgumentException(
+                    "Bucket doesn't exist " + bucketName
+            );
+        }
+
+        return localStorageService.listObjects(bucketName);
+    }
 }

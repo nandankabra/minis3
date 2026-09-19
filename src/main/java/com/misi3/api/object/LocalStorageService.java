@@ -6,10 +6,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
+import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class LocalStorageService {
@@ -80,5 +79,23 @@ public class LocalStorageService {
                 getObject(bucketName, objectKey);
 
         Files.deleteIfExists(objectPath);
+    }
+
+    public List<String> listObjects(
+            String bucketName
+    ) throws IOException {
+
+        Path bucketPath =
+                rootDirectory.resolve(bucketName);
+
+        if (!Files.exists(bucketPath)) {
+            return List.of();
+        }
+
+        try (Stream<Path> stream = Files.list(bucketPath)) {
+            return stream
+                    .map(path -> path.getFileName().toString())
+                    .toList();
+        }
     }
 }
