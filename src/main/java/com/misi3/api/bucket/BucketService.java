@@ -1,41 +1,33 @@
 package com.misi3.api.bucket;
 
-import org.springframework.boot.web.server.autoconfigure.servlet.ForwardedHeaderFilterCustomizer;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 @Service
 public class BucketService {
+
     private final BucketRepository bucketRepository;
-   
-    public BucketService(BucketRepository bucketRepository  ){
-        this.bucketRepository=bucketRepository;
+
+    public BucketService(BucketRepository bucketRepository) {
+        this.bucketRepository = bucketRepository;
     }
-    /*
-    public Bucket createBucket(String name){
-        if(name == null || name.isBlank()){
-            throw  new IllegalArgumentException("Bucket name cnnot be empty");
-        }
-        if(bucketRepository.exists(name)){
-            throw  new IllegalArgumentException("Bucket already exists");
-        }
-        Bucket bucket = new Bucket(name);
-        return bucketRepository.save(bucket);
-    }*/
-    //temp code
-    public Bucket createBucket(String name){
 
-        System.out.println("BucketService Repo = " + bucketRepository.hashCode());
+    public Bucket createBucket(String name) {
 
-        if(name == null || name.isBlank()){
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Bucket name cannot be empty");
         }
 
-        if(bucketRepository.exists(name)){
+        if (bucketRepository.exists(name)) {
             throw new IllegalArgumentException("Bucket already exists");
         }
 
         Bucket bucket = new Bucket(name);
         return bucketRepository.save(bucket);
     }
-    //temp code end here
+
+    public Collection<Bucket> getBuckets() {
+        return bucketRepository.findAll();
+    }
 }

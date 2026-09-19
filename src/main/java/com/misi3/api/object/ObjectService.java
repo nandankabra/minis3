@@ -51,6 +51,7 @@ public class ObjectService {
     public void delete(String bucketName , String objectKey)throws IOException{
         localStorageService.delete(bucketName,objectKey );
     }
+    /*
     public List<String> listObjects(String bucketName)
             throws IOException {
 
@@ -62,4 +63,15 @@ public class ObjectService {
 
         return localStorageService.listObjects(bucketName);
     }
+    */
+    public List<String> listObjects(String bucketName)
+            throws IOException {
+
+        System.out.println("========== LIST OBJECTS ==========");
+        System.out.println("Bucket = " + bucketName);
+        System.out.println("Bucket exists = " + bucketRepository.exists(bucketName));
+
+        return localStorageService.listObjects(bucketName);
+    }
+
 }

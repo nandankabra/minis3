@@ -80,13 +80,34 @@ public class LocalStorageService {
 
         Files.deleteIfExists(objectPath);
     }
-
+    /*
     public List<String> listObjects(
             String bucketName
     ) throws IOException {
 
         Path bucketPath =
                 rootDirectory.resolve(bucketName);
+
+        if (!Files.exists(bucketPath)) {
+            return List.of();
+        }
+
+        try (Stream<Path> stream = Files.list(bucketPath)) {
+            return stream
+                    .map(path -> path.getFileName().toString())
+                    .toList();
+        }
+    }
+
+     */
+    public List<String> listObjects(String bucketName)
+            throws IOException {
+
+        Path bucketPath = rootDirectory.resolve(bucketName);
+
+        System.out.println("Root directory = " + rootDirectory);
+        System.out.println("Bucket path = " + bucketPath);
+        System.out.println("Exists = " + Files.exists(bucketPath));
 
         if (!Files.exists(bucketPath)) {
             return List.of();

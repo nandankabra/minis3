@@ -12,7 +12,7 @@ public class Bucket {
     }
 
     public String getName() {
-        return name;   // <-- FIX
+        return name;
     }
 
     public void setName(String name) {
