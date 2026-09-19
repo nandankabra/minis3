@@ -1,6 +1,7 @@
 package com.misi3.api.bucket;
 
 public class Bucket {
+
     private String name;
 
     public Bucket() {
@@ -11,13 +12,10 @@ public class Bucket {
     }
 
     public String getName() {
-        return null;
+        return name;   // <-- FIX
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void put(String name, Bucket bucket) {
     }
 }
